@@ -34,7 +34,9 @@ public class BooksInBookstore implements Serializable{
     public void init() {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        Integer bookstoreId = Integer.parseInt(requestParameters.get("bookstoreId"));
+        System.out.println("test");
+        int bookstoreId = Integer.parseInt(requestParameters.get("bookstoreId"));
+        System.out.println(bookstoreId);
         this.bookstore = bookstoresDAO.findOne(bookstoreId);
     }
 

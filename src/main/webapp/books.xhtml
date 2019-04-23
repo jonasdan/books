@@ -8,6 +8,7 @@
 <h:head/>
 <h:body>
     <h2>Books in #{booksInBookstore.bookstore.title}:</h2>
+    <h2>Bookstore id #{booksInBookstore.bookstore.id}:</h2>
     <ol>
         <ui:repeat value="#{booksInBookstore.bookstore.books}" var="book">
             <li>#{book.title}</li>
