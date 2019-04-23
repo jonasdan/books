@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "C:\Users\User\IdeaProjects\mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="BooksDB" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:~/BooksDB;AUTO_SERVER=TRUE"
+                        userId=""
+                        password="">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="mybatis.model" targetProject="MAVEN" />
+
+        <sqlMapGenerator targetPackage="mybatis.xml" targetProject="MAVEN" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="mybatis.dao" targetProject="MAVEN" />
+
+
+        <table schema="public" tableName="bookstore">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
+        </table>
+        <table schema="public" tableName="book">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
+        </table>
+        <table schema="public" tableName="author">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
+        </table>
+        <table schema="public" tableName="book_author">
+        </table>
+    </context>
+</generatorConfiguration>

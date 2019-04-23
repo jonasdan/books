@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.dao.BookAuthorMapper">
+    <resultMap id="BaseResultMap" type="mybatis.model.BookAuthor">
+        <id column="author_id" jdbcType="INTEGER" property="authorId"/>
+        <id column="book_id" jdbcType="INTEGER" property="bookId"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        DELETE FROM public.author_book
+        WHERE author_id = #{authorId,jdbcType=INTEGER}
+              AND book_id = #{bookId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="mybatis.model.BookAuthor">
+        INSERT INTO public.author_book (author_id, book_id)
+        VALUES (#{authorId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER})
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            author_id,
+            book_id
+        FROM public.author_book
+    </select>
+</mapper>

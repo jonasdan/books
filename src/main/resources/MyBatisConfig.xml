@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="mybatis.model.Author" alias="Author"/>
+        <typeAlias type="mybatis.model.Book" alias="Book"/>
+        <typeAlias type="mybatis.model.Bookstore" alias="Bookstore"/>
+        <typeAlias type="mybatis.model.BookAuthor" alias="BookAuthor"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="openejb:Resource/BooksDataSource"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis.xml/AuthorMapper.xml"/>
+        <mapper resource="mybatis.xml/BookMapper.xml"/>
+        <mapper resource="mybatis.xml/BookstoreMapper.xml"/>
+        <mapper resource="mybatis.xml/BookAuthorMapper.xml"/>
+    </mappers>
+</configuration>

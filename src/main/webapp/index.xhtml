@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Bookstores:</h2>
+    <ol>
+        <ui:repeat value="#{bookstores.allBookstores}" var="bookstore">
+        <li><h:link value="#{bookstore.title}" outcome="books?bookstoreId=#{bookstore.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{bookstores.bookstoreToCreate.title}" required="true"/>
+        <h:commandButton value="Add new bookstore" action="#{bookstores.createBookstore}"/>
+    </h:form>
+    <h:link outcome="myBatis/bookstores" value="MyBatis implementation"/>
+</h:body>
+</html>

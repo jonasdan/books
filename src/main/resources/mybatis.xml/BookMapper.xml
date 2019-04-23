@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.dao.BookMapper">
+    <resultMap id="BaseResultMap" type="mybatis.model.Book">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="bookstore_id" jdbcType="INTEGER" property="bookstoreId"/>
+
+        <!-- Rankomis prirašytas ryšiui ManyToOne Book -> Bookstore -->
+        <!-- Nested result (nėra N+1 select problemos) -->
+        <association property="bookstore" resultMap="mybatis.dao.BookstoreMapper.BaseResultMap"
+                     columnPrefix="bookstore_"/>
+
+        <!-- Rankomis prirašytas ryšiui ManyToMany Book - Author -->
+        <!-- Nested select (yra N+1 select problema) -->
+        <collection property="authors" javaType="ArrayList" column="id" ofType="Author" select="selectAuthorsForBook"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM public.book
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="mybatis.model.Book" useGeneratedKeys="true">
+        INSERT INTO public.book (title, bookstore_id)
+        VALUES (#{title,jdbcType=VARCHAR}, #{bookstoreId,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="mybatis.model.Book">
+        UPDATE public.book
+        SET title = #{title,jdbcType=VARCHAR},
+        bookstore_id = #{bookstoreId,jdbcType=INTEGER}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT id, title,  bookstore_id
+        FROM public.book
+        WHERE id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT s.id, s.title,  s.bookstore_id,
+            u.title as bookstore_title
+        FROM public.book s
+            LEFT JOIN public.bookstore u ON s.bookstore_id = u.id
+    </select>
+
+    <!-- Rankomis prirašytas ryšiui ManyToMany Book - Author -->
+    <select id="selectAuthorsForBook" resultType="Author">
+        SELECT
+            c.id,
+            c.name
+        FROM public.author c
+            JOIN public.book_author sc on c.id = sc.author_id
+        WHERE sc.book_id = #{id,jdbcType=INTEGER}
+    </select>
+
+</mapper>
