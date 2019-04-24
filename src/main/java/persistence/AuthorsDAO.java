@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 public class AuthorsDAO {
 
-    @PersistenceContext
+    @PersistenceContext //handling a set of entities
     private EntityManager em;
 
     public void persist(Author author){

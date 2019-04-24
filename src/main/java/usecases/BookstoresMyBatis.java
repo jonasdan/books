@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Model
+@Model //model layer
 public class BookstoresMyBatis {
 
     @Inject

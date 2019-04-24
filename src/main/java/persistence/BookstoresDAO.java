@@ -12,7 +12,7 @@ import java.util.List;
 @ApplicationScoped
 public class BookstoresDAO {
 
-    @PersistenceContext
+    @PersistenceContext//handling a set of entities
     private EntityManager em;
 
 

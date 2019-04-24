@@ -15,7 +15,7 @@ import entities.Book;
 import persistence.BooksDAO;
 import persistence.BookstoresDAO;
 
-@Model
+@Model //model layer
 public class BooksInBookstore implements Serializable{
 
     @Inject
@@ -30,13 +30,11 @@ public class BooksInBookstore implements Serializable{
     @Getter @Setter
     private Book bookToCreate = new Book();
 
-    @PostConstruct
+    @PostConstruct //method that needs to be executed after dependency injection is done to perform any initialization
     public void init() {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        System.out.println("test");
         int bookstoreId = Integer.parseInt(requestParameters.get("bookstoreId"));
-        System.out.println(bookstoreId);
         this.bookstore = bookstoresDAO.findOne(bookstoreId);
     }
 

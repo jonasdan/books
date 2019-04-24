@@ -11,7 +11,7 @@ import java.util.List;
 @ApplicationScoped
 public class BooksDAO {
 
-    @PersistenceContext
+    @PersistenceContext //handling a set of entities
     private EntityManager em;
 
     public void persist(Book book){
