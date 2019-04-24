@@ -46,7 +46,7 @@
             LEFT JOIN public.bookstore u ON s.bookstore_id = u.id
     </select>
 
-    <!-- Rankomis prirašytas ryšiui ManyToMany Book - Author -->
+    <!-- Book-Author -->
     <select id="selectAuthorsForBook" resultType="Author">
         SELECT
             c.id,

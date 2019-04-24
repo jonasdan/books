@@ -10,7 +10,7 @@ import org.mybatis.cdi.Mapper;
 @Mapper
 public interface BookAuthorMapper {
 
-    int deleteByPrimaryKey(@Param("authorId") int studentId, @Param("bookId") int courseId);
+    int deleteByPrimaryKey(@Param("authorId") int authorId, @Param("bookId") int courseId);
     
     int insert(BookAuthor record);
     

@@ -6,10 +6,10 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity //class can be mapped to a table
 @NamedQueries({
         @NamedQuery(name = "Bookstore.findAll", query = "select t from Bookstore as t")
-})
+})//retrieve all bookstores in the database
 @Table(name = "BOOKSTORE")
 @Getter @Setter
 public class Bookstore {
@@ -18,14 +18,14 @@ public class Bookstore {
 
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id//primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//use special identity columns in the database that generate a value on insertion of a row
     private int id;
 
     @Column(name = "TITLE")
     private String title;
 
-    @OneToMany(mappedBy = "bookstore", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bookstore", fetch = FetchType.EAGER) //load it together with the rest of the fields
     private List<Book> books = new ArrayList<>();
 
     @Override

@@ -8,16 +8,16 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity //class can be mapped to a table
 @NamedQueries({
         @NamedQuery(name = "Book.findAll", query = "select a from Book as a")
-})
+})//retrieve all books in the database
 @Table(name = "BOOK")
 @Getter @Setter
 public class Book implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id//primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//use special identity columns in the database that generate a value on insertion of a row
     private int id;
 
     @Column(name = "TITLE")
@@ -30,7 +30,7 @@ public class Book implements Serializable {
     @JoinTable(name = "BOOK_AUTHOR", joinColumns = {
             @JoinColumn(name = "BOOK_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
             @JoinColumn(name = "AUTHOR_ID", referencedColumnName = "ID")})
-    @ManyToMany
+    @ManyToMany //many to many with authors
     private List<Author> authors = new ArrayList<>();
 
     public Book(){
