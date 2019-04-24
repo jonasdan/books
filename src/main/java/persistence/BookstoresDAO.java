@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@ApplicationScoped
+@ApplicationScoped //An object which is defined as @ApplicationScoped is created once for the duration of the application.
 public class BookstoresDAO {
 
     @PersistenceContext//handling a set of entities
