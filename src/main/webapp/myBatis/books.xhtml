@@ -16,6 +16,7 @@
     </ol>
     <h:form>
         <h:inputText a:placeholder="title" value="#{booksInBookstore.bookToCreate.title}" required="true" />
+        <br></br>
         <h:commandButton value="Add book to the bookstore" action="#{booksInBookstore.createBook}" >
             <f:param name="bookstoreId" value="#{booksInBookstore.bookstore.id}"/>
         </h:commandButton>

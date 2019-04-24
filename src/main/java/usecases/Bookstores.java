@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Model //model layer
+//tas pats kaip: @Named ir @RequestScoped
 public class Bookstores {
 
     @Inject

@@ -15,7 +15,8 @@ import entities.Book;
 import persistence.BooksDAO;
 import persistence.BookstoresDAO;
 
-@Model //model layer
+@Model //model laye
+ //tas pats kaip: @Named ir @RequestScoped
 public class BooksInBookstore implements Serializable{
 
     @Inject
